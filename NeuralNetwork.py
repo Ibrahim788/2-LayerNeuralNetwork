@@ -63,7 +63,6 @@ def forward_propagation(X, parameters):
     return A2, cache
 
 # Use the Cost Entropy algorthim to compute the cost
-
 def compute_cost(A2, Y, parameters):
 
     # Number of training examples
@@ -72,24 +71,24 @@ def compute_cost(A2, Y, parameters):
     # J = −1/m ∑(Ylog(A2) + (1−Y)log(1−A2)
     cost = np.dot(-1/m, np.sum(np.multiply(Y, np.log(A2)) + np.multiply(1 - Y, np.log(1 - A2))))
     
-    # makes sure cost is the dimension we expect.
+    # Makes sure cost is the dimension we expect.
     cost = np.squeeze(cost)      
                          
     return cost
 
-# Back Propagation
+# Back Propagation step
 def backward_propagation(parameters, cache, X, Y):
     
     # Size of the training set
     m = X.shape[1]
-    # Gather variables from dictionary "parameters"
+    # Gather variables from dictionary "parameters" and "cache"
     W1 = parameters["W1"]
     W2 = parameters["W2"]
     A1 = cache["A1"]
     A2 = cache["A2"]
     
-    # Backward propagation
     """ 
+        Backward propagation
         dZ2 = A2 - Y
         dW2 = 1/m  ∑ dZ2[1]
         dZ1 = W2.T dZ2 * (1 - A1^2)
@@ -200,7 +199,6 @@ def main():
     # This may take a while...
 
     plt.figure(figsize=(16, 32))
-    plt.show()
     hidden_layer_sizes = [1, 2, 3, 4, 5, 20, 50]
     
     for i, n_h in enumerate(hidden_layer_sizes):
@@ -208,6 +206,7 @@ def main():
         plt.title('Hidden Layer of size %d' % n_h)
         parameters = neuralNetwork_model(X, Y, n_h, num_iterations = 5000)
         plot_decision_boundary(lambda x: predict(parameters, x.T), X, Y)
+        plt.show()
         predictions = predict(parameters, X)
         accuracy = float((np.dot(Y,predictions.T) + np.dot(1-Y,1-predictions.T))/float(Y.size)*100)
         print ("Accuracy for {} hidden units: {} %".format(n_h, accuracy))
