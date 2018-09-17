@@ -111,7 +111,6 @@ def backward_propagation(parameters, cache, X, Y):
     return grads
 
 # Update parameters using Gradient Descent
-
 def update_parameters(parameters, grads, learning_rate = 1.2):
   
     # Retrieve parameters from dictionary "parameters" and "grads
@@ -138,7 +137,6 @@ def update_parameters(parameters, grads, learning_rate = 1.2):
     return parameters
 
 # Full neural network
-
 def neuralNetwork_model(X, Y, n_h, num_iterations = 10000, print_cost=False):
     
     # Set random seed and n_x, n_y variables
